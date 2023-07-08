@@ -1,29 +1,21 @@
-# This is just an example to get you started. A typical binary package
-# uses this file as the main entry point of the application.
 import metatag/id3
 import os
 import std/sequtils
-import std/strformat
 
 const raw: string = "raw/"
 const sorted: string = "sorted/"
-const version:string = "DEVELOPMENT"
+const version:string = "0.1.0"
 
 proc moveMusicToRaw() =
     createDir(raw)
     createDir(sorted)
-    echo "wip"
+
 proc createSeqMusic(): seq[string] =
     result = toSeq(walkFiles(raw&"*.mp3"))
+
 proc iterateSeq(list: seq[string]) = 
-#    for i in range(list.count()):
-#        list[i] = list[i].extractFilename()
     for file in list:
-        echo file
         var tag = readId3(file)
-        #for textFrame in tag.textFrames:
-        #    echo fmt"id: {textFrame.id}"
-        #    echo fmt"conent: {textFrame.content}"
         let artist: string = tag.textFrames[1][1]
         let album: string = tag.textFrames[2][1]
         createDir(sorted&artist)
@@ -34,7 +26,6 @@ proc iterateSeq(list: seq[string]) =
 when isMainModule:
     moveMusicToRaw()
     var list: seq[string] = createSeqMusic()
-    echo list
     iterateSeq(list)
 
 
