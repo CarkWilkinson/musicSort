@@ -3,7 +3,7 @@
 import metatag/id3
 import os
 import std/sequtils
-import std/strformat
+import std/strutils
 
 const raw: string = "raw/"
 const sorted: string = "sorted/"
@@ -24,8 +24,10 @@ proc iterateSeq(list: seq[string]) =
         #for textFrame in tag.textFrames:
         #    echo fmt"id: {textFrame.id}"
         #    echo fmt"conent: {textFrame.content}"
-        let artist: string = tag.textFrames[1][1]
-        let album: string = tag.textFrames[2][1]
+        var artist: string = tag.textFrames[1][1]
+        var album: string = tag.textFrames[2][1]
+        artist = artist.replace("/", "")
+        album = album.replace("/","")
         createDir(sorted&artist)
         createDir(sorted&artist&"/"&album)
         let endName: string = tag.textFrames[5][1]&" "&tag.textFrames[0][1]&".mp3"
