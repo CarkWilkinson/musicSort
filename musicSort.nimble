@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.0.0"
+version       = "0.1.1"
 author        = "Mark Wilkinson"
 description   = "A tool to sort your mp3 music files based on id3 metadata"
 license       = "MIT"

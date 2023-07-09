@@ -7,7 +7,7 @@ import std/strutils
 
 const raw: string = "raw/"
 const sorted: string = "sorted/"
-const version:string = "DEVELOPMENT"
+const version:string = "0.1.1"
 
 proc moveMusicToRaw() =
     createDir(raw)
