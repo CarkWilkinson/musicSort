@@ -26,11 +26,15 @@ proc iterateSeq(list: seq[string]) =
         #    echo fmt"conent: {textFrame.content}"
         var artist: string = tag.textFrames[1][1]
         var album: string = tag.textFrames[2][1]
+        var name: string = tag.textFrames[0][1]
+        var trackNum: string = tag.textFrames[5][1]
         artist = artist.replace("/", "")
         album = album.replace("/","")
+        name = name.replace("/", "")
+        trackNum = trackNum.replace("/", "")
         createDir(sorted&artist)
         createDir(sorted&artist&"/"&album)
-        let endName: string = tag.textFrames[5][1]&" "&tag.textFrames[0][1]&".mp3"
+        let endName: string = trackNum&" "&name&".mp3"
         copyFile(file, sorted&artist&"/"&album&"/"&endName)
 
 when isMainModule:
